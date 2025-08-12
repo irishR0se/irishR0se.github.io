@@ -1,9 +1,255 @@
-<html>
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irish Rose</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome-section img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .remarks-section {
+            margin-top: 40px;
+        }
+
+        .toggle-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .toggle-button:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+        }
+
+        .toggle-button:active {
+            transform: translateY(0);
+        }
+
+        .chevron {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid white;
+            transition: transform 0.3s ease;
+        }
+
+        .chevron.expanded {
+            transform: rotate(180deg);
+        }
+
+        .remarks-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .remarks-content.expanded {
+            max-height: 1000px;
+        }
+
+        .remarks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .remarks-table th,
+        .remarks-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .remarks-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .remarks-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .remarks-table tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        .remark-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+
+        .remark-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .remark-content {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .remark-date {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+    </style>
+</head>
 <body>
-  <h1>Irish Rose</h1>
-  <p>Welcome</p>
-  <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" />
+    <div class="container">
+        <h1>Irish Rose</h1>
+        
+        <div class="welcome-section">
+            <p>Welcome</p>
+            <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" alt="Welcome" />
+        </div>
+
+        <div class="remarks-section">
+            <button type="button" id="toggleAllRemarks" class="toggle-button" aria-expanded="false">
+                <span class="button-text">Show All Remarks</span>
+                <div class="chevron"></div>
+            </button>
+
+            <div class="remarks-content" id="remarksContent">
+                <table class="remarks-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Remark</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-01-15</td>
+                            <td>General</td>
+                            <td>Initial setup completed successfully. All systems are operational.</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-14</td>
+                            <td>Technical</td>
+                            <td>Updated website styling and improved user interface components.</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-13</td>
+                            <td>Content</td>
+                            <td>Added new sections for better content organization and navigation.</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-12</td>
+                            <td>Performance</td>
+                            <td>Optimized loading times and improved overall site performance.</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-11</td>
+                            <td>Security</td>
+                            <td>Implemented additional security measures and updated protocols.</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 20px;">
+                    <div class="remark-item">
+                        <div class="remark-title">Feature Enhancement</div>
+                        <div class="remark-content">
+                            Implemented new toggle functionality for better user experience. 
+                            Users can now easily show or hide all remarks with a single click.
+                        </div>
+                        <div class="remark-date">Added: January 16, 2024</div>
+                    </div>
+
+                    <div class="remark-item">
+                        <div class="remark-title">UI Improvements</div>
+                        <div class="remark-content">
+                            Enhanced the visual design with better color schemes, hover effects, 
+                            and smooth transitions throughout the interface.
+                        </div>
+                        <div class="remark-date">Added: January 15, 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggleAllRemarks');
+            const remarksContent = document.getElementById('remarksContent');
+            const buttonText = toggleButton.querySelector('.button-text');
+            const chevron = toggleButton.querySelector('.chevron');
+
+            toggleButton.addEventListener('click', function() {
+                const isExpanded = remarksContent.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    // Hide remarks
+                    remarksContent.classList.remove('expanded');
+                    chevron.classList.remove('expanded');
+                    buttonText.textContent = 'Show All Remarks';
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                } else {
+                    // Show remarks
+                    remarksContent.classList.add('expanded');
+                    chevron.classList.add('expanded');
+                    buttonText.textContent = 'Hide All Remarks';
+                    toggleButton.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    </script>
 </body>
- 
 </html>
