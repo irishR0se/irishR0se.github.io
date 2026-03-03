@@ -1,9 +1,63 @@
-<html>
- 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Client Corner</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+    h1 { color: #2c3e50; }
+    .welcome-msg { font-size: 1.2em; margin-bottom: 18px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background: #f8f9fa; font-weight: 600; color: #2c3e50; }
+    tr:nth-child(even) { background: #f8f9fa; }
+    tr:hover { background: #e3f2fd; }
+    .no-results { color: #888; font-style: italic; margin-top: 12px; }
+    .period-label { margin-bottom: 8px; color: #555; }
+  </style>
+</head>
+
 <body>
-  <h1>Irish Rose</h1>
-  <p>Welcome</p>
-  <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" />
+  <div class="container">
+    <h1>Irish Rose</h1>
+
+    <p class="welcome-msg" th:text="${msg}">Welcome</p>
+
+    <p class="period-label" th:if="${selectedPeriod != null}">Showing logs for the last&nbsp;
+      <span th:text="${selectedPeriod}">month</span>
+    </p>
+
+    <div th:if="${result != null and !result.isEmpty()}">
+      <table>
+        <thead>
+          <tr>
+            <th>Log #</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th th:if="${isEbixUser}">Client ID</th>
+            <th>Assigned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="record : ${result}">
+            <td th:text="${record.logNumber}"></td>
+            <td th:text="${record.date}"></td>
+            <td th:text="${record.logDescription}"></td>
+            <td th:text="${record.status}"></td>
+            <td th:if="${isEbixUser}" th:text="${record.clientID}"></td>
+            <td th:text="${record.assignedCode}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="no-results" th:if="${result == null or result.isEmpty()}">No recent logs found.</p>
+
+    <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" alt="Welcome" />
+  </div>
 </body>
- 
+
 </html>
